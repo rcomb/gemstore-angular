@@ -1,0 +1,65 @@
+<!doctype html>
+<html ng-app="myApp">
+
+<head>
+    <title>Dodecahedron Gem Store</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <style>
+        .panel-body {
+            min-height: 540px;
+        }
+        .reviewContainer{
+            max-height: 200px;
+            overflow-y: scroll;
+        }    
+    </style>
+</head>
+
+<body ng-controller="myController">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Dodecahedron Store</a>
+            </div>
+            <div class="navbar-right">
+                <button class="btn btn-default" data-toggle="popover" title="Cart" data-content="Cart Data Here" data-placement="bottom">
+                    <span style="font-size:2em" class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    <span class="badge">{{cart.length}}</span>
+                </button>
+            </div>
+        </div>
+        
+    </nav>
+    <main class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-4" ng-repeat="product in model">
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> {{product.name}} </div>
+                    <div class="panel-body">
+                        <div> {{product.price | currency}} </div>
+                        <div ng-include="'templates/gem-carousel.html'"></div>
+                        <div gem-panels></div>
+                        <button class="btn btn-primary" ng-click="addProduct(product)" ng-show="product.canPurchase">Add To Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    
+    <script src="scripts/app.js" type="text/javascript"></script>
+    
+    <script src="scripts/modules/gemProducts.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/md5.js"></script>
+    <script src="scripts/modules/gravatar.js" type="text/javascript"></script>
+</body>
+
+</html>

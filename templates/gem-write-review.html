@@ -1,0 +1,35 @@
+<h4>Write a Review</h4>
+<form name="reviewForm" ng-submit="validate() && addReview(product)" novalidate>
+    <div class="alert alert-danger" ng-show="(reviewForm.stars.$dirty && reviewForm.stars.$invalid) || (reviewForm.body.$dirty && reviewForm.body.$invalid) || (reviewForm.author.$dirty && reviewForm.author.$invalid)" role="alert">
+        <ul>
+            <li ng-show="reviewForm.stars.$dirty && reviewForm.stars.$invalid">Rating is required</li>
+            <li ng-show="reviewForm.body.$dirty && reviewForm.body.$invalid">Review is required</li>
+            <li ng-show="reviewForm.author.$dirty && reviewForm.author.$invalid">Email is required</li>
+        </ul>
+        <!--$Valid: {{reviewForm.$valid}} <br/>
+            $Submitted: {{reviewForm.$submitted}}<br/>
+            $Dirty: {{reviewForm.$dirty}}<br/>
+            $Pristine: {{reviewForm.$pristine}}<br/>
+            $Invalid: {{reviewForm.$invalid}}<br/>
+            $Invalid-Required: {{reviewForm.$invalid-required}}<br/>-->
+    </div>
+    <blockquote> <b>Stars: {{review.stars}}</b> {{review.body}} <cite>by: {{review.author}}</cite> </blockquote>
+    <div class="form-group" ng-class="{'has-error':reviewForm.stars.$dirty && reviewForm.stars.$invalid}">
+        <label class="control-label" for="stars">Rating</label>
+        <select name="stars" class="form-control" ng-model="review.stars" required>
+            <option value="1">1 star</option>
+            <option value="2">2 stars</option>
+            <option value="3">3 stars</option>
+            <option value="4">4 stars</option>
+            <option value="5">5 stars</option>
+        </select>
+    </div>
+    <div class="form-group" ng-class="{'has-error':reviewForm.body.$dirty && reviewForm.body.$invalid}">
+        <label class="control-label" for="body">Review</label>
+        <textarea name="body" class="form-control" placeholder="Write your review..." ng-model="review.body" required></textarea>
+    </div>
+    <div class="form-group" ng-class="{'has-error':reviewForm.author.$dirty && reviewForm.author.$invalid, 'has-success':reviewForm.author.$valid-email}">
+        <label class="control-label" for="author">Email Address</label>
+        <input type="email" placeholder="Email Address" name="author" class="form-control" ng-model="review.author" required /> </div>
+    <input type="submit" value="Add Review" class="btn btn-primary" />
+</form>

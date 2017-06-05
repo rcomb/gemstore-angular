@@ -1,0 +1,26 @@
+<ul class="nav nav-pills">
+    <li ng-class="{active: isSelected(1)}"> <a ng-click="selectTab(1)" href>Description</a> </li>
+<!--    <li ng-class="{active: isSelected(2)}"> <a ng-click="selectTab(2)" href>Specifications</a> </li>-->
+    <li ng-class="{active: isSelected(3)}"> <a ng-click="selectTab(3)" href>Reviews</a> </li>
+    <li ng-class="{active: isSelected(4)}"> <a ng-click="selectTab(4)" href>Write a Review</a> </li>
+</ul>
+<div class="panel" ng-show="isSelected(1)">
+    <h4>Description</h4>
+    <p>{{product.description}}</p>
+</div>
+<!--
+<div class="panel" ng-show="isSelected(2)">
+    <h4>Specifications</h4>
+    <blockquote>Incomplete</blockquote>
+</div>
+-->
+<div class="panel" ng-show="isSelected(3)">
+    <h4>Reviews</h4>
+    <div class="reviewContainer">
+
+        <blockquote ng-repeat="review in product.reviews">
+            <img ng-init="avatar = Avatar.generate(review.author)" ng-src="{{avatar}}" />
+            <b>Stars: {{review.stars}}</b> {{review.body}} <cite>by: {{review.author}}</cite> </blockquote>
+    </div>
+</div>
+<div class="panel" ng-show="isSelected(4)" gem-write-review> </div>
